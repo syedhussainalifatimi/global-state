@@ -1,0 +1,19 @@
+.textarea{
+  height: 200px;
+  width: 25%;
+  border: 1px solid rgb(38, 126, 184);
+  border-radius: 5px;
+  color: black;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+.inputbox{
+      height: 50px;
+      width: 15%;
+      padding: 5px;
+      border: 1px solid rgb(38, 126, 184);
+      border-radius: 5px;
+      color: black;
+      font-size: 15px;
+      font-family: sans-serif;
+}
