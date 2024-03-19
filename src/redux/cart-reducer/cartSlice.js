@@ -13,7 +13,7 @@ export const cartItemsSlice = createSlice({
       // Create a new array with the new item added
     },
     removeItem: (state, action) => {
-      state.cartItems = state.cartItems.filter(item => item.id !== action.payload.id); // Filter out the item to be removed
+      state.cartItems = state.cartItems.filter(item => item.name !== action.payload.name); // Filter out the item to be removed
     },
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './fragrances.module.css';
-import CoustomButton from '../../button/coustombutton';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/cart-reducer/cartSlice';
 
@@ -12,18 +12,21 @@ const Fragrance = () => {
     <>
       <h1>Fragrances-Collection</h1>
       <div className={Styles.showcasecontainer}>
-        {fragranceItems.map(product => (
+        {fragranceItems.slice(0, 3).map(product => (
           <div key={product.id} className={Styles.items}>
             <img src={product.imageUrl} alt={product.name} className={Styles.img} />
             <h5>{product.name}</h5>
             <div className={Styles.pricecart}>
               <p>Price: ${product.price}</p>
-              <CoustomButton onClick={() => dispatch(addItem(product))}>
+              <button onClick={() => dispatch(addItem(product))}>
                 Add to Cart
-              </CoustomButton>
+              </button>
             </div>
           </div>
         ))}
+      </div>
+      <div className={Styles.moreitems}>
+        <Link to="/fragrances"><h5>View More .......</h5></Link>
       </div>
     </>
   );

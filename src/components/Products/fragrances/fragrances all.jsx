@@ -1,18 +1,18 @@
 import React from 'react';
-import Styles from './pants.module.css';
+import Styles from './fragrances.module.css';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/cart-reducer/cartSlice';
-import { Link } from 'react-router-dom';
 
-const Pants = () => {
-  const pantsCollection = useSelector(state => state.pants.pants);
+const AllFragrances = () => {
+  const fragranceItems = useSelector(state => state.fragrance.fragrance);
   const dispatch = useDispatch();
 
   return (
     <>
-      <h1>Pants-Collection</h1>
+      <h1>Fragrances-Collection</h1>
       <div className={Styles.showcasecontainer}>
-        {pantsCollection.slice(0, 3).map(product => (
+        {fragranceItems.map(product => (
           <div key={product.id} className={Styles.items}>
             <img src={product.imageUrl} alt={product.name} className={Styles.img} />
             <h5>{product.name}</h5>
@@ -25,12 +25,8 @@ const Pants = () => {
           </div>
         ))}
       </div>
-      <div className={Styles.moreitems}>
-        <Link to="/pants"><h5>View More .......</h5></Link>
-      </div>
-
     </>
   );
 }
 
-export default Pants;
+export default AllFragrances;

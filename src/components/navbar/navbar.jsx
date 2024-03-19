@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Styles from './navbar.module.css'
-
+import { useSelector, useDispatch } from "react-redux";
+import { signOutUser } from "../../redux/signIn-reducer/signInSlice";
+import Styles from './navbar.module.css';
 
 const Navbar = () => {
-  const [isSignInWithGoogle, setIsSignInWithGoogle] = useState(false);
+  const signInInfo = useSelector(state => state.signIn.signIn[0]); // Accessing the first element of the signIn array
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cartItems.cartItems);
 
   const handleClick = () => {
-    setIsSignInWithGoogle(prevState => !prevState);
-  }
+    dispatch(signOutUser()); // Dispatching the signOutUser action directly
+  };
+
   return (
     <>
       <div className={Styles.navbar}>
@@ -26,13 +30,26 @@ const Navbar = () => {
           </Link>
           <Link to="/cart" className={Styles.link}>
             Cart
+            <span>{cartItems.length}</span>
           </Link>
-          <Link to="/" className={Styles.link} onClick={handleClick}>
-            {isSignInWithGoogle ? 'Sign Out' : 'Sign In with Google'}
-          </Link>
+          {signInInfo.isSignInWithGoogle ? (
+            <Link to="/" className={Styles.link} onClick={handleClick}>
+              Sign Out
+            </Link>
+          ) : (
+            <>
+              <Link to="/signup" className={Styles.link} >
+                SignUp
+              </Link>
+              <Link to="/signin" className={Styles.link} >
+                SignIn
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
+
 export default Navbar;
